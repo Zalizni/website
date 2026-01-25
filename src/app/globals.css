@@ -1,0 +1,82 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --border-color: #333333;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-onest: var(--font-onest);
+  --font-helios: var(--font-helios);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+@utility container {
+  padding-inline: 16px;
+  margin-inline: auto;
+
+  @variant sm {
+    padding-inline: 20px;
+  }
+
+  @variant lg {
+    padding-inline: 40px;
+  }
+
+  @variant xl {
+    padding-inline: 40px;
+    max-width: 1360px;
+  }
+
+  @variant 2xl {
+    padding-inline: 40px;
+    max-width: 1360px;
+  }
+}
+
+@utility flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@utility section-desc {
+  font-family: var(--font-helios);
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@utility section-title {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: bold;
+
+  @variant xl {
+    font-size: 64px;
+    line-height: 64px;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-onest), var(--font-helios), sans-serif;
+}
+
+*,
+::after,
+::before,
+::backdrop,
+::file-selector-button {
+  border-color: var(--border-color);
+}
