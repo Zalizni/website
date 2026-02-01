@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import { getLocale } from 'next-intl/server';
-import { SECTIONS_IDS } from '@/configs/navigation';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { getLocale } from "next-intl/server";
+import { SECTIONS_IDS } from "@/configs/navigation";
 
 const Header = async () => {
   const locale = await getLocale();
@@ -19,12 +19,12 @@ const Header = async () => {
             />
           </Link>
 
-          <div className="hidden items-center gap-8 text-sm font-medium tracking-wide text-white/50 uppercase xl:flex">
+          <div className="hidden items-center gap-8 text-sm font-medium tracking-wide text-white/70 uppercase xl:flex">
             <Link
               href={`/${locale}#${SECTIONS_IDS.ABOUT}`}
               className="transition-colors hover:text-white"
             >
-              Про компанію
+              Про продукт
             </Link>
             <Link
               href={`/${locale}#${SECTIONS_IDS.SCENARIOS}`}

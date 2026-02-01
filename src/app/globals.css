@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 :root {
   --background: #ffffff;
@@ -62,8 +62,8 @@
   font-weight: bold;
 
   @variant xl {
-    font-size: 64px;
-    line-height: 64px;
+    font-size: 48px;
+    line-height: 48px;
   }
 }
 

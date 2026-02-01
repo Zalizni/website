@@ -1,7 +1,7 @@
-import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { notFound } from 'next/navigation';
-import { routing } from '@/i18n/routing';
-import { Footer, Header } from '@/components';
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+import { Footer, Header } from "@/components";
 
 type Props = {
   children: React.ReactNode;

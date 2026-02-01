@@ -1,46 +1,33 @@
-import { SECTIONS_IDS } from '@/configs/navigation';
-
-const PlaceholderIcon = () => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    className="text-neutral-500"
-  >
-    <rect
-      x="3"
-      y="3"
-      width="18"
-      height="18"
-      rx="2"
-      ry="2"
-    />
-    <circle
-      cx="8.5"
-      cy="8.5"
-      r="1.5"
-    />
-    <polyline points="21 15 16 10 5 21" />
-  </svg>
-);
+import { SECTIONS_IDS } from "@/configs/navigation";
+import { AutonomyIcon, ConnectionIcon, SecurityIcon } from "./components";
+import Image from "next/image";
 
 const AdvantageCard = ({
   title,
   description,
+  icon,
+  useBg,
 }: {
   title: string;
   description: string;
+  icon: React.ReactNode;
+  useBg?: boolean;
 }) => (
-  <div className="group flex h-full min-h-[320px] flex-col justify-between border border-t-0 border-l-0 border-neutral-800 p-6 transition-colors hover:bg-neutral-900/30">
-    <div className="mb-8 flex justify-end">
-      <PlaceholderIcon />
-    </div>
-    <div>
-      <h3 className="mb-4 text-lg font-bold">{title}</h3>
-      <p className="text-sm leading-relaxed text-white/50">{description}</p>
+  <div className="group flex h-full flex-col justify-between border border-t-0 border-l-0 border-neutral-800 p-6 transition-colors hover:bg-neutral-900/30 relative">
+    {useBg && (
+      <Image
+        src="/images/landing/tysha-pattern.png"
+        alt="Advantage Background"
+        fill
+        className="object-cover opacity-50"
+      />
+    )}
+    <div className="relative z-10">
+      <div className="mb-8 flex justify-end">{icon}</div>
+      <div>
+        <h3 className="mb-4 text-lg font-bold">{title}</h3>
+        <p className="leading-relaxed text-white/70">{description}</p>
+      </div>
     </div>
   </div>
 );
@@ -48,50 +35,48 @@ const AdvantageCard = ({
 export const AdvantagesSection = () => {
   const advantages = [
     {
-      title: 'Автономність',
+      icon: <ConnectionIcon size={72} />,
+      title: "Непомітний радіозв’язок",
       description:
-        'Енергоефективність конструкції забезпечує тривалий час роботи без втрати стабільності сигналу та функціональності пристрою.',
+        "Короткі сеанси передачі та FHSS зменшують ризик виявлення і ускладнюють перехоплення або придушення зв’язку в “шумному” ефірі.",
     },
     {
-      title: 'Захищеність даних',
+      icon: <SecurityIcon size={72} />,
+      title: "Захищеність даних",
       description:
-        'Кожен сигнал шифрується; навіть у разі перехоплення інформація залишається нечитабельною й безцінною для противника.',
+        "Кожен сигнал шифрується; навіть у разі перехоплення інформація залишається нечитабельною й безцінною для противника.",
     },
     {
-      title: 'Орієнтація та пошук',
+      icon: <AutonomyIcon size={72} />,
+      title: "Автономність",
       description:
-        'Режими компаса, пеленгації та SOS допомагають визначати напрямок, координати й знаходити своїх у складних і небезпечних',
+        "Оптимізований режим роботи для довгих виходів: мінімум зайвих передач, максимум часу без підзарядки.",
+    },
+    {
+      icon: <AutonomyIcon size={72} />,
+      title: "Надійність",
+      description:
+        "Захист від пилу й вологи та міцна конструкція для щоденного використання в полі. Рівень захисту — наближений до IP67",
     },
   ];
 
   return (
     <section id={SECTIONS_IDS.ADVANTAGES}>
       <div className="container border-x px-0 pb-20">
-        <div className="px-6 pt-20">
+        <div className="px-6">
           <span className="section-desc mb-10 block">Переваги</span>
           <div className="flex items-start pb-20">
             <h2 className="section-title w-full">
-              Title about usage scenarios
+              Мінімальні сигнали. Максимум користі.
             </h2>
-            <p className="w-full text-start text-lg text-white/50">
-              “Тиша” — це польовий комунікаційний пристрій, створений для
-              ситуацій, де важливо зберігати повне маскування та контроль над
-              ефіром.
-            </p>
           </div>
         </div>
 
-        <div className="-mr-px grid grid-cols-1 border-t md:grid-cols-2 lg:grid-cols-3">
+        <div className="-mr-px grid grid-cols-1 border-t md:grid-cols-2">
           {advantages.map((adv, i) => (
             <AdvantageCard
+              useBg={i === 1 || i === 2}
               key={`adv-1-${i}`}
-              {...adv}
-            />
-          ))}
-          {/* Repeating for the second row as seen in design */}
-          {advantages.map((adv, i) => (
-            <AdvantageCard
-              key={`adv-2-${i}`}
               {...adv}
             />
           ))}

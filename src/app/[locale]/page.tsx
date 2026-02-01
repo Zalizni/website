@@ -5,7 +5,7 @@ import {
   ContactUsSection,
   HomeSection,
   ContactsSection,
-} from './components';
+} from "./components";
 
 export default function Home() {
   return (

@@ -1,9 +1,9 @@
-import { SECTIONS_IDS } from '@/configs/navigation';
-import { getTranslations } from 'next-intl/server';
-import Image from 'next/image';
+import { SECTIONS_IDS } from "@/configs/navigation";
+import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 
 export const HomeSection = async () => {
-  const t = await getTranslations('home');
+  const t = await getTranslations("home");
 
   return (
     <section
@@ -17,11 +17,11 @@ export const HomeSection = async () => {
         className="object-cover"
       />
       <div className="flex-center relative z-10 container h-full flex-col border-x text-center">
-        <h1 className="font-helios mb-6 text-4xl xl:text-[64px]/[72px]">
-          {t('title')}
+        <h1 className="font-helios mb-6 text-4xl xl:text-[64px]/[72px] text-white whitespace-pre-wrap">
+          {t("title")}
         </h1>
         <p className="max-w-2/3 text-lg text-white/70 xl:text-[20px]/[24px]">
-          {t('description')}
+          {t("description")}
         </p>
       </div>
     </section>
