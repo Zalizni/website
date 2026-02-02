@@ -67,13 +67,16 @@ export const ContactUsSection = () => {
     setStatus("loading");
 
     try {
-      const response = await fetch("https://formsubmit.co/ceo@zalizni.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://formsubmit.co/ae7749965d4c447650b9ebd10fce715b",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       if (response.ok) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });

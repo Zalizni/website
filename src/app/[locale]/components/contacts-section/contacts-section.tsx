@@ -4,7 +4,10 @@ export const ContactsSection = () => {
       <div className="container border-x px-6 pb-10 md:pb-20">
         <div className="section-desc mb-6 md:mb-10 block">Контакти</div>
         <div className="gap grid grid-cols-1 md:grid-cols-3 gap-6">
-          <a className="flex w-full cursor-pointer items-center justify-between bg-white p-4 text-black transition-colors hover:bg-neutral-200">
+          <a
+            href="https://wa.me/380635903497"
+            className="flex w-full cursor-pointer items-center justify-between bg-white p-4 text-black transition-colors hover:bg-neutral-200"
+          >
             WhatsApp
             <svg
               width="24"
@@ -19,7 +22,10 @@ export const ContactsSection = () => {
               <polyline points="7 7 17 7 17 17" />
             </svg>
           </a>
-          <a className="flex w-full cursor-pointer items-center justify-between bg-white p-4 text-black transition-colors hover:bg-neutral-200">
+          <a
+            href="https://signal.me/#p/380635903497"
+            className="flex w-full cursor-pointer items-center justify-between bg-white p-4 text-black transition-colors hover:bg-neutral-200"
+          >
             Signal
             <svg
               width="24"
