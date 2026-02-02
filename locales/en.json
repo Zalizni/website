@@ -20,5 +20,10 @@
     "messageRequired": "Message is required",
     "success": "Message sent!",
     "error": "Error sending. Please try again."
+  },
+  "thanks": {
+    "title": "Thank you!",
+    "description": "Your message has been successfully sent. We will contact you shortly.",
+    "button": "Back to Home"
   }
 }

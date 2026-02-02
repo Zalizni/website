@@ -65,26 +65,7 @@ export const ContactUsSection = () => {
     if (!validate()) return;
 
     setStatus("loading");
-
-    try {
-      const response = await fetch(
-        "https://formsubmit.co/ae7749965d4c447650b9ebd10fce715b",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-      if (response.ok) {
-        setStatus("success");
-        setFormData({ name: "", email: "", message: "" });
-      }
-    } catch (error) {
-      console.error(error);
-      setStatus("error");
-    }
+    (e.target as HTMLFormElement).submit();
   };
 
   return (
@@ -95,7 +76,12 @@ export const ContactUsSection = () => {
             <div className="section-title mb-6">Звʼяжіться з нами</div>
           </div>
           <div className="w-full px-6">
-            <form onSubmit={handleSubmit}>
+            <form
+              target="_blank"
+              action="https://formsubmit.co/ae7749965d4c447650b9ebd10fce715b"
+              method="POST"
+              onSubmit={handleSubmit}
+            >
               <Input
                 name="name"
                 value={formData.name}
@@ -125,6 +111,11 @@ export const ContactUsSection = () => {
                 className="mb-6"
                 error={errors.message}
               />
+              <input
+                type="hidden"
+                name="_next"
+                value="https://zalizni.com/thanks"
+              ></input>
 
               <button
                 type="submit"
