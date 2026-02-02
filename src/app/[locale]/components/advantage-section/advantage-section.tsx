@@ -23,7 +23,7 @@ const AdvantageCard = ({
       />
     )}
     <div className="relative z-10">
-      <div className="mb-8 flex justify-end">{icon}</div>
+      <div className="mb-8 flex">{icon}</div>
       <div>
         <h3 className="mb-4 text-lg font-bold">{title}</h3>
         <p className="leading-relaxed text-white/70">{description}</p>
@@ -62,10 +62,10 @@ export const AdvantagesSection = () => {
 
   return (
     <section id={SECTIONS_IDS.ADVANTAGES}>
-      <div className="container border-x px-0 pb-20">
-        <div className="px-6">
-          <span className="section-desc mb-10 block">Переваги</span>
-          <div className="flex items-start pb-20">
+      <div className="container border-x px-0 pb-10 md:pb-20">
+        <div className="px-6 pt-10 md:pt-0">
+          <span className="section-desc mb-6 md:mb-10 block">Переваги</span>
+          <div className="flex flex-col md:flex-row items-start pb-10 md:pb-20 gap-4 md:gap-0">
             <h2 className="section-title w-full">
               Мінімальні сигнали. Максимум користі.
             </h2>

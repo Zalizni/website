@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { Input } from "./components";
 import { SECTIONS_IDS } from "@/configs/navigation";
+import { useTranslations } from "next-intl";
 
 export const ContactUsSection = () => {
+  const t = useTranslations("validation");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,19 +15,69 @@ export const ContactUsSection = () => {
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const validate = () => {
+    const newErrors = {
+      name: "",
+      email: "",
+      message: "",
+    };
+    let isValid = true;
+
+    if (!formData.name.trim()) {
+      newErrors.name = t("nameRequired");
+      isValid = false;
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = t("emailRequired");
+      isValid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = t("emailInvalid");
+      isValid = false;
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = t("messageRequired");
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name as keyof typeof errors]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validate()) return;
+
     setStatus("loading");
 
     try {
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
+      const response = await fetch("https://formsubmit.co/ceo@zalizni.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      }
     } catch (error) {
       console.error(error);
       setStatus("error");
@@ -34,8 +86,8 @@ export const ContactUsSection = () => {
 
   return (
     <section id={SECTIONS_IDS.CONTACTS}>
-      <div className="container border-x px-0 py-20">
-        <div className="flex items-start border-y py-20">
+      <div className="container border-x px-0 py-10 md:py-20">
+        <div className="flex flex-col md:flex-row items-start border-y py-10 md:py-20 gap-8 md:gap-0">
           <div className="w-full px-6">
             <div className="section-title mb-6">Звʼяжіться з нами</div>
           </div>
@@ -48,7 +100,7 @@ export const ContactUsSection = () => {
                 type="text"
                 placeholder="IM'Я"
                 className="mb-2"
-                required
+                error={errors.name}
               />
 
               <Input
@@ -58,7 +110,7 @@ export const ContactUsSection = () => {
                 type="email"
                 placeholder="EMAIL"
                 className="mb-2"
-                required
+                error={errors.email}
               />
 
               <Input
@@ -68,7 +120,7 @@ export const ContactUsSection = () => {
                 type="text"
                 placeholder="ТЕКСТ ПОВІДОМЛЕННЯ"
                 className="mb-6"
-                required
+                error={errors.message}
               />
 
               <button
@@ -92,12 +144,10 @@ export const ContactUsSection = () => {
               </button>
 
               {status === "success" && (
-                <p className="mt-4 text-green-500">Повідомлення відправлено!</p>
+                <p className="mt-4 text-green-500">{t("success")}</p>
               )}
               {status === "error" && (
-                <p className="mt-4 text-red-500">
-                  Помилка відправки. Спробуйте ще раз.
-                </p>
+                <p className="mt-4 text-red-500">{t("error")}</p>
               )}
             </form>
           </div>

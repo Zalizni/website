@@ -1,4 +1,5 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Footer, Header } from "@/components";
@@ -15,8 +16,10 @@ export default async function LocaleLayout({ children, params }: Props) {
     notFound();
   }
 
+  const messages = await getMessages();
+
   return (
-    <NextIntlClientProvider>
+    <NextIntlClientProvider messages={messages}>
       <div className="scroll-smooth bg-black text-white">
         <Header />
         {children}

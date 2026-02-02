@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { SECTIONS_IDS } from "@/configs/navigation";
+import { MobileMenu } from "./mobile-menu";
 
 const Header = async () => {
   const locale = await getLocale();
+  const t = await getTranslations("navigation");
   return (
     <header className="fixed top-0 z-50 w-full border-b bg-black text-white">
       <div className="container border-x">
@@ -24,27 +26,29 @@ const Header = async () => {
               href={`/${locale}#${SECTIONS_IDS.ABOUT}`}
               className="transition-colors hover:text-white"
             >
-              Про продукт
+              {t("about")}
             </Link>
             <Link
               href={`/${locale}#${SECTIONS_IDS.SCENARIOS}`}
               className="transition-colors hover:text-white"
             >
-              Використання
+              {t("scenarios")}
             </Link>
             <Link
               href={`/${locale}#${SECTIONS_IDS.ADVANTAGES}`}
               className="transition-colors hover:text-white"
             >
-              Переваги
+              {t("advantages")}
             </Link>
             <Link
               href={`/${locale}#${SECTIONS_IDS.CONTACTS}`}
               className="transition-colors hover:text-white"
             >
-              контакти
+              {t("contacts")}
             </Link>
           </div>
+
+          <MobileMenu locale={locale} />
         </div>
       </div>
     </header>

@@ -16,11 +16,11 @@ export const HomeSection = async () => {
         fill
         className="object-cover"
       />
-      <div className="flex-center relative z-10 container h-full flex-col border-x text-center">
-        <h1 className="font-helios mb-6 text-4xl xl:text-[64px]/[72px] text-white whitespace-pre-wrap">
+      <div className="flex-center relative z-10 container h-full flex-col border-x text-center px-4 md:px-6">
+        <h1 className="font-helios mb-6 text-4xl md:text-5xl xl:text-[64px]/[72px] text-white whitespace-pre-wrap">
           {t("title")}
         </h1>
-        <p className="max-w-2/3 text-lg text-white/70 xl:text-[20px]/[24px]">
+        <p className="w-full md:max-w-2/3 text-base md:text-lg text-white/70 xl:text-[20px]/[24px]">
           {t("description")}
         </p>
       </div>

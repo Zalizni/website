@@ -38,12 +38,12 @@ const ScenarioItem = ({
 export const ScenariosSection = () => {
   return (
     <section id={SECTIONS_IDS.SCENARIOS}>
-      <div className="container border-x px-0 py-20">
+      <div className="container border-x px-0 py-10 md:py-20">
         <div className="px-6">
           <span className="section-desc mb-6 block">Функціональність</span>
-          <div className="flex items-start pb-20">
+          <div className="flex flex-col lg:flex-row items-start pb-10 md:pb-20 gap-8 lg:gap-0">
             <h2 className="section-title w-full">Коли мовчання - це безпека</h2>
-            <div className="w-full text-start text-lg">
+            <div className="w-full text-start text-base md:text-lg">
               <ul className="list-disc list-inside text-white/70">
                 <li>Тактичні команди без голосу</li>
                 <li>SOS і навігація для швидкої реакції</li>
@@ -57,7 +57,7 @@ export const ScenariosSection = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 border-y lg:grid-cols-2">
-          <div className="border-r py-10 px-6">
+          <div className="border-b lg:border-b-0 lg:border-r py-10 px-6">
             <div className="section-desc mb-6 block">Сценарії використання</div>
             <div className="section-title mb-8">Рішення для різних потреб</div>
           </div>
